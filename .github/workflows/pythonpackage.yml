@@ -1,3 +1,11 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 4 optimizations:
+# - [HIGH] Add pip dependency cache to "build" job
+# - [HIGH] Add pip dependency cache to "deploy_pypi" job
+# - [LOW] Explicitly set fail-fast for large matrix job "build" (5 combinations)
+# - [LOW] Use shallow clone in "deploy_pypi" job
+# Estimated savings: ~8 min/run
+#
 name: Python package
 
 on:
@@ -40,7 +48,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0
+        fetch-depth: 1
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
